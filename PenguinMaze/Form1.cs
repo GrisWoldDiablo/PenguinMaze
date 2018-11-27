@@ -20,12 +20,18 @@ namespace PenguinMaze
         {
             InitializeComponent();
             theOne = new Player(new Point(0, 0));
+            RandomEntity();
+        }
+
+        private void RandomEntity()
+        {
+            entities = new List<AbstractEntity>();
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
 
-                    switch (Rand.Next(3))
+                    switch (Rand.Next(5))
                     {
                         case 0:
                             entities.Add(new Floor(new Point(i * 50, j * 50)));
@@ -48,7 +54,7 @@ namespace PenguinMaze
 
                         default:
                             break;
-                    } 
+                    }
                 }
             }
         }
@@ -59,6 +65,17 @@ namespace PenguinMaze
             {
                 item.Draw(e.Graphics); 
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            RandomEntity();
+            Refresh();
         }
     }
 }
