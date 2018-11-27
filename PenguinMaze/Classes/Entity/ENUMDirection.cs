@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace PenguinMaze.Classes.Entity
 {
     /// <summary>
-    /// Enumerator for entity movement heading.
-    /// 
+    /// Enumerator for entity movement heading. 
     /// </summary>
     enum Direction
     {
@@ -16,18 +15,22 @@ namespace PenguinMaze.Classes.Entity
         /// Not moving
         /// </summary>
         NONE,
+
         /// <summary>
         /// Heading North
         /// </summary>
         UP,
+
         /// <summary>
         /// Heading South 
         /// </summary>
         DOWN,
+
         /// <summary>
         /// Heading West 
         /// </summary>
         LEFT,
+
         /// <summary>
         /// Heading East
         /// </summary>
