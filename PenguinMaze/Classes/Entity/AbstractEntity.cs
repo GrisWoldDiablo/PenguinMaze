@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PenguinMaze.Classes.Entity
 {
-    abstract class AbstractEntity
+    public abstract class AbstractEntity
     {
         protected bool isEaten;                // Is the entity eaten.
         protected int scoreValue;              // Point value of the entity.  
@@ -35,7 +35,7 @@ namespace PenguinMaze.Classes.Entity
         public virtual void Draw(Graphics g, Image spriteIMG = null)
         {
             if (spriteIMG is null) return;
-            int size = 0; // Map cell size TOCOMPLETE
+            int size = 50; // Map cell size TOCOMPLETE
             Rectangle spriteBound = new Rectangle(location.X, location.Y, size, size); // Get the bound of the sprite to draw on the graphic
             g.DrawImage(spriteIMG, spriteBound);
         }

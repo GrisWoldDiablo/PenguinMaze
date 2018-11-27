@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PenguinMaze.Classes.Entity
 {
-    class Floor : AbstractEntity
+    public class Floor : AbstractEntity
     {
         private static string imageFile = "Floor.png";
         private static Image spriteIMG;

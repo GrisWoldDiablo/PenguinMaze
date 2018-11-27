@@ -65,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -99,8 +102,12 @@
     <Content Include="Resources\Lobster.png" />
     <Content Include="Resources\Map.txt" />
     <Content Include="Resources\Orca.png" />
-    <Content Include="Resources\Penguin.png" />
-    <Content Include="Resources\spr_shark.png" />
+    <Content Include="Resources\PenguinDown.png" />
+    <Content Include="Resources\PenguinLeft.png" />
+    <Content Include="Resources\PenguinNone.png" />
+    <Content Include="Resources\PenguinRight.png" />
+    <Content Include="Resources\PenguinUp.png" />
+    <Content Include="Resources\Shark.png" />
     <Content Include="Resources\Wall.png" />
   </ItemGroup>
   <ItemGroup>

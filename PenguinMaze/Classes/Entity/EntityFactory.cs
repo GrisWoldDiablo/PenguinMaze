@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PenguinMaze.Classes.Entity
 {
-    class EntityFactory
+    public class EntityFactory
     {
     }
 }

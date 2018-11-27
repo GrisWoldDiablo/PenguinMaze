@@ -9,7 +9,7 @@ namespace PenguinMaze.Classes.Entity
     /// <summary>
     /// Enumerator for entity movement heading. 
     /// </summary>
-    enum Direction
+    public enum Direction
     {
         /// <summary>
         /// Not moving

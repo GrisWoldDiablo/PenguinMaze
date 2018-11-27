@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PenguinMaze.Classes.Entity
 {
-    class Food : AbstractEntity
+    public class Food : AbstractEntity
     {
-        private static string[] imageFiles = { "Fish.png", "Crab.png", "Fish.png" };
+        private static string[] imageFiles = { "Fish.png", "Crab.png", "Lobster.png" };
         private static List<Image> spriteImages = new List<Image>();
         private Image spriteIMG;
 
