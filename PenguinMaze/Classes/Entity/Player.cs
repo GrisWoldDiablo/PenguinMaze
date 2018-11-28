@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PenguinMaze.Classes.Entity
 {
@@ -21,7 +22,9 @@ namespace PenguinMaze.Classes.Entity
         /// </summary>
         private static List<Image> spriteImages = new List<Image>();
         private Image spriteIMG;
-        private Direction heading;
+        private int lifes;
+        
+        public int Lifes { get => lifes; set => lifes = value; }
 
         static Player()
         {
@@ -33,14 +36,47 @@ namespace PenguinMaze.Classes.Entity
 
         public Player(Point location) : base(200, location)
         {
-            this.heading = Direction.NONE;
-            this.spriteIMG = Player.spriteImages[(int)this.heading];
+            this.currentDirection = Direction.NONE;
+            this.lifes = 3;
+            //this.spriteIMG = Player.spriteImages[/*(int)this.heading*/];
         }
+
 
         public override void Draw(Graphics g, Image spriteIMG = null)
         {
-            this.spriteIMG = Player.spriteImages[(int)this.heading];
+            this.spriteIMG = Player.spriteImages[(int)this.currentDirection];
             base.Draw(g, this.spriteIMG);
+        }
+        
+        public void UpdateDirection(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.Up:
+                case Keys.W:
+                    this.currentDirection = Direction.UP;
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                    this.currentDirection = Direction.DOWN;
+                    break;
+                case Keys.Left:
+                case Keys.A:
+                    this.currentDirection = Direction.LEFT;
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                    this.currentDirection = Direction.RIGHT;
+                    break;
+                default:
+                    this.currentDirection = Direction.NONE;
+                    break;
+            }
+        }
+
+        public override void Move()
+        {
+            base.Move();
         }
     }
 }

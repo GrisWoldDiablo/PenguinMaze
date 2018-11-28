@@ -53,7 +53,9 @@
     <Compile Include="Classes\Entity\Floor.cs" />
     <Compile Include="Classes\Entity\Food.cs" />
     <Compile Include="Classes\Entity\Player.cs" />
+    <Compile Include="Classes\Entity\Igloo.cs" />
     <Compile Include="Classes\Entity\Wall.cs" />
+    <Compile Include="Classes\GameManager.cs" />
     <Compile Include="Classes\PathFinding\Map.cs" />
     <Compile Include="Classes\PathFinding\Node.cs" />
     <Compile Include="Classes\Rand.cs" />
@@ -98,9 +100,9 @@
     <Content Include="Resources\Crab.png" />
     <Content Include="Resources\Fish.png" />
     <Content Include="Resources\Floor.png" />
-    <Content Include="Resources\Iglu.jpg" />
+    <Content Include="Resources\Igloo.jpg" />
     <Content Include="Resources\Lobster.png" />
-    <Content Include="Resources\Map.txt" />
+    <Content Include="Resources\Level0.txt" />
     <Content Include="Resources\Orca.png" />
     <Content Include="Resources\PenguinDown.png" />
     <Content Include="Resources\PenguinLeft.png" />

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using PenguinMaze.Classes.PathFinding;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PenguinMaze.Classes.Entity
 {
@@ -35,8 +37,8 @@ namespace PenguinMaze.Classes.Entity
         public virtual void Draw(Graphics g, Image spriteIMG = null)
         {
             if (spriteIMG is null) return;
-            int size = 50; // Map cell size TOCOMPLETE
-            Rectangle spriteBound = new Rectangle(location.X, location.Y, size, size); // Get the bound of the sprite to draw on the graphic
+            int size = Map.CellSize;
+            Rectangle spriteBound = new Rectangle(location.X * size, location.Y * size, size, size); // Get the bound of the sprite to draw on the graphic
             g.DrawImage(spriteIMG, spriteBound);
         }
         
@@ -61,9 +63,23 @@ namespace PenguinMaze.Classes.Entity
                     return new Point(-1, 0);
                 case Direction.RIGHT:
                     return new Point(1, 0);
-                default:
+                default: // Direction.NONE
                     return new Point(0, 0);
             }
+        }
+
+        public virtual void Move()
+        {
+            Point velocity = GetVelocity();
+            int tX = this.location.X + velocity.X;
+            int tY = this.location.Y + velocity.Y;
+
+            if (!(Map.MapData[tX,tY] < 0))
+            {
+                this.location.X += velocity.X;
+                this.location.Y += velocity.Y;
+            }
+            
         }
     }
 }

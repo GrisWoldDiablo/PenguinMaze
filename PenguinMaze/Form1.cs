@@ -16,11 +16,16 @@ namespace PenguinMaze
     {
         public AbstractEntity theOne;
         public List<AbstractEntity> entities = new List<AbstractEntity>();
+
+        
+
         public Form1()
         {
             InitializeComponent();
             theOne = new Player(new Point(0, 0));
             RandomEntity();
+
+            GameManager.StartGame();
         }
 
         private void RandomEntity()
@@ -61,10 +66,11 @@ namespace PenguinMaze
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var item in entities)
-            {
-                item.Draw(e.Graphics); 
-            }
+            GameManager.DrawGame(e.Graphics);
+            //foreach (var item in entities)
+            //{
+            //    item.Draw(e.Graphics); 
+            //}
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -74,7 +80,9 @@ namespace PenguinMaze
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            RandomEntity();
+            GameManager.Player.UpdateDirection(e.KeyCode);
+            GameManager.Player.Move();
+            //RandomEntity();
             Refresh();
         }
     }

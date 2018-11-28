@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PenguinMaze.Classes.Entity
 {
@@ -25,6 +26,11 @@ namespace PenguinMaze.Classes.Entity
         public override void Draw(Graphics g, Image spriteIMG = null)
         {
             base.Draw(g, Floor.spriteIMG);
+        }
+
+        public override void Move()
+        {
+            // Don't Move
         }
     }
 }

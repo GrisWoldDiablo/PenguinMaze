@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PenguinMaze.Classes.Entity
 {
@@ -26,12 +27,14 @@ namespace PenguinMaze.Classes.Entity
             this.spriteIMG = Food.spriteImages[Rand.Next(spriteImages.Count)];
         }
 
-
-        
-
         public override void Draw(Graphics g, Image spriteIMG = null)
         {
             base.Draw(g, this.spriteIMG);
+        }
+
+        public override void Move()
+        {
+            // Don't Move
         }
     }
 }
