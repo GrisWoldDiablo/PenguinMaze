@@ -55,38 +55,38 @@ namespace PenguinMaze.Classes.PathFinding
                     {
                         case MapSymbol.Wall:
                             //entities[x, y] = new Wall(new Point(x, y));
-                            entities.Add(new Wall(new Point(x, y)));
+                            entities.Add(EntityFactory.GetWall(x,y));
                             mapData[x, y] = -1;
                             break;
                         case MapSymbol.Floor:
                             //entities[x, y] = new Floor(new Point(x, y));
-                            entities.Add(new Floor(new Point(x, y)));
+                            entities.Add(EntityFactory.GetFloor(x, y));
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Player:
                             //entities[x, y] = new Floor(new Point(x, y));
-                            entities.Add(new Floor(new Point(x, y)));
-                            player = new Player(new Point(x, y));
+                            entities.Add(EntityFactory.GetFloor(x, y));
+                            player = EntityFactory.GetPlayer(x, y);
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Enemy:
                             //entities[x, y] = new Floor(new Point(x, y));
                             //entities[x, y] = new Enemy(new Point(x, y));
-                            entities.Add(new Floor(new Point(x, y)));
-                            entities.Add(new Enemy(new Point(x, y)));
+                            entities.Add(EntityFactory.GetFloor(x, y));
+                            entities.Add(EntityFactory.GetEnemy(x, y));
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Food:
                             //entities[x, y] = new Floor(new Point(x, y));
                             //entities[x, y] = new Food(new Point(x, y));
-                            entities.Add(new Floor(new Point(x, y)));
-                            entities.Add(new Food(new Point(x, y)));
+                            entities.Add(EntityFactory.GetFloor(x, y));
+                            entities.Add(EntityFactory.GetFood(x, y));
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Igloo:
                             //entities[x, y] = new Floor(new Point(x, y));
-                            entities.Add(new Floor(new Point(x, y)));
-                            ending = new Igloo(new Point(x, y));
+                            entities.Add(EntityFactory.GetFloor(x, y));
+                            ending = EntityFactory.GetIgloo(x, y);
                             entities.Add(ending);
                             mapData[x, y] = 1;
                             break;

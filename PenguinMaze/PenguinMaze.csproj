@@ -59,16 +59,25 @@
     <Compile Include="Classes\PathFinding\Map.cs" />
     <Compile Include="Classes\PathFinding\Node.cs" />
     <Compile Include="Classes\Rand.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="CombatForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CombatForm.Designer.cs">
+      <DependentUpon>CombatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MazeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MazeForm.Designer.cs">
+      <DependentUpon>MazeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="CombatForm.resx">
+      <DependentUpon>CombatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MazeForm.resx">
+      <DependentUpon>MazeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -105,6 +114,7 @@
     <Content Include="Resources\Level0.txt" />
     <Content Include="Resources\Orca.png" />
     <Content Include="Resources\PenguinDown.png" />
+    <Content Include="Resources\PenguinFight.png" />
     <Content Include="Resources\PenguinLeft.png" />
     <Content Include="Resources\PenguinNone.png" />
     <Content Include="Resources\PenguinRight.png" />

@@ -15,6 +15,7 @@ namespace PenguinMaze.Classes.Entity
 
         public Igloo(Point location) : base(0, location)
         {
+
         }
         
 
@@ -23,7 +24,7 @@ namespace PenguinMaze.Classes.Entity
             spriteIMG = Image.FromFile($"../../Resources/{imageFile}");
         }
 
-        public override void Draw(Graphics g, Image spriteIMG = null)
+        public override void Draw(Graphics g, Image spriteIMG = null, int size = 0)
         {
             base.Draw(g, Igloo.spriteIMG);
         }

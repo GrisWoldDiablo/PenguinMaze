@@ -27,7 +27,7 @@ namespace PenguinMaze.Classes.Entity
             this.spriteIMG = Food.spriteImages[Rand.Next(spriteImages.Count)];
         }
 
-        public override void Draw(Graphics g, Image spriteIMG = null)
+        public override void Draw(Graphics g, Image spriteIMG = null, int size = 0)
         {
             base.Draw(g, this.spriteIMG);
         }

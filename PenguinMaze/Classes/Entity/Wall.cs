@@ -23,7 +23,7 @@ namespace PenguinMaze.Classes.Entity
             spriteIMG = Image.FromFile($"../../Resources/{imageFile}");
         }
 
-        public override void Draw(Graphics g, Image spriteIMG = null)
+        public override void Draw(Graphics g, Image spriteIMG = null, int size = 0)
         {
             base.Draw(g, Wall.spriteIMG);
         }

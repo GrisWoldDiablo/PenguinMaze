@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PenguinMaze.Classes.PathFinding;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -21,8 +22,11 @@ namespace PenguinMaze.Classes.Entity
         /// <para/>4 : <see cref="Direction.RIGHT"/>, PenguinRight.png
         /// </summary>
         private static List<Image> spriteImages = new List<Image>();
+        private static string fightingImageFile = "PenguinFight.png";
+        private static Image fightingSprite;
         private Image spriteIMG;
         private int lifes;
+        
         
         public int Lifes { get => lifes; set => lifes = value; }
 
@@ -32,20 +36,31 @@ namespace PenguinMaze.Classes.Entity
             {
                 spriteImages.Add(Image.FromFile($"../../Resources/{item}"));
             }
+            fightingSprite = Image.FromFile($"../../Resources/{fightingImageFile}");
         }
 
         public Player(Point location) : base(200, location)
         {
             this.currentDirection = Direction.NONE;
             this.lifes = 3;
-            //this.spriteIMG = Player.spriteImages[/*(int)this.heading*/];
+            this.target = null;
+            this.healthPoint = 1000;
+            this.damagePoint = 30;
+            this.isAlive = true;
         }
 
 
-        public override void Draw(Graphics g, Image spriteIMG = null)
+        public override void Draw(Graphics g, Image spriteIMG = null, int size = 0)
         {
-            this.spriteIMG = Player.spriteImages[(int)this.currentDirection];
-            base.Draw(g, this.spriteIMG);
+            if (this.isFighting)
+            {
+                this.spriteIMG = fightingSprite;
+            }
+            else
+            {
+                this.spriteIMG = Player.spriteImages[(int)this.currentDirection];
+            }
+            base.Draw(g, this.spriteIMG, size);
         }
         
         public void UpdateDirection(Keys key)
@@ -77,6 +92,20 @@ namespace PenguinMaze.Classes.Entity
         public override void Move()
         {
             base.Move();
+            AbstractEntity other = Map.Entities.Find(x => x.Location == this.location && !(x is Floor || x is Igloo || x is Player) );
+                        
+            if (!(other is null))
+            {
+                if (other is Enemy)
+                {
+                    this.target = other;
+                    this.isFighting = true;
+                }
+                else
+                {
+                    base.Eat(other);
+                }
+            } 
         }
     }
 }
