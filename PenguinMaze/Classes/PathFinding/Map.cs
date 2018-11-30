@@ -21,15 +21,11 @@ namespace PenguinMaze.Classes.PathFinding
             Food   = 'F',
             Igloo  = 'I'
         }
-
-
-        //public static string mapFile = "Map.txt";
-        //private static AbstractEntity[,] entities = null;
+        
         private static List<AbstractEntity> entities = null;
         private static int[,] mapData = null;
         private static int cellSize = 30;
-
-        //public static AbstractEntity[,] Entities { get => entities; set => entities = value; }
+        
         public static List<AbstractEntity> Entities { get => entities; set => entities = value; }
         public static int[,] MapData { get => mapData; set => mapData = value; }
         public static int CellSize { get => cellSize; set => cellSize = value; }

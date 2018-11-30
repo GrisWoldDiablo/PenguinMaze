@@ -119,6 +119,7 @@
             this.Controls.Add(this.attacker_PB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CombatForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CombatForm";
             ((System.ComponentModel.ISupportInitialize)(this.attacker_PB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.target_PB)).EndInit();
