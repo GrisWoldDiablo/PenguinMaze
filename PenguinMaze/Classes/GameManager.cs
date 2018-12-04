@@ -20,9 +20,10 @@ namespace PenguinMaze.Classes
         private static int currentLevel = 0;
         private static MazeForm mazeForm;
         private static CombatForm combatForm;
-
         private static string[] levels = { "Level0.txt" };
-        
+
+        private static List<Node> path;
+
         public static Player Player { get => player; set => player = value; }
         public static int CurrentLevel { get => currentLevel; set => currentLevel = value; }
 
@@ -32,6 +33,9 @@ namespace PenguinMaze.Classes
             combatForm = theCombatForm;
 
             ResetGame();
+            Node playerNode = new Node(player.Location.X, player.Location.Y, null, null);
+            Node endingNode = new Node(ending.Location.X, ending.Location.Y, playerNode, null);
+            path = AStar.FindPath(endingNode, playerNode);
         }
 
         private static void ResetGame()
@@ -65,6 +69,11 @@ namespace PenguinMaze.Classes
             foreach (AbstractEntity entity in Map.Entities)
             {
                 entity.Draw(g);
+            }
+
+            foreach (var item in path)
+            {
+                item.Draw(g);
             }
         }
 

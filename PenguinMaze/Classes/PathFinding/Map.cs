@@ -96,5 +96,23 @@ namespace PenguinMaze.Classes.PathFinding
             entities.Add(player);
             return !(player is null);
         }
+
+        public static int GetData(int x, int y)
+        {
+            int maxX = mapData.GetUpperBound(0);
+            int maxY = mapData.GetUpperBound(1);
+            if (x < 0 || x > maxX)
+            {
+                return -1;
+            }
+            else if (x < 0 || x > maxX)
+            {
+                return -1;
+            }
+            else
+            {
+                return mapData[x, y];
+            }
+        }
     }
 }
