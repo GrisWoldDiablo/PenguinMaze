@@ -16,9 +16,12 @@ namespace PenguinMaze.Classes.PathFinding
         private Node goalNode;
         private Node parentNode;
         private int gValue;
-        private int gTV;
+        private float gTV;
         private float fV;
         private float hV;
+
+        private static string imageFile = "FloorCracked.png";
+        private static Image spriteIMG;
 
         public Node(int x, int y, Node goalNode, Node parentNode, int gValue = 1)
         {
@@ -29,12 +32,16 @@ namespace PenguinMaze.Classes.PathFinding
             this.parentNode = parentNode;
         }
 
+        static Node()
+        {
+            spriteIMG = Image.FromFile($"../../Resources/{imageFile}");
+        }
+
         public Node GoalNode { get => goalNode; set => goalNode = value; }
         public Node ParentNode { get => parentNode; set => parentNode = value; }
-        private float GTotalValue { get { return !(this. parentNode is null) ? this.parentNode.GTotalValue + this.gValue : this.gValue; } }
-        private float HValue { get { return !(this.goalNode is null) ? (float)Math.Sqrt(Math.Pow((this.x - this.goalNode.x),2) * Math.Pow((this.y - this.goalNode.y),2)) : 0.0f; } }
+        private int GTotalValue { get { return !(this.parentNode is null) ? this.parentNode.GTotalValue + this.gValue : this.gValue; } }
+        public float HValue { get => !(this.goalNode is null) ? (float)Math.Sqrt(Math.Pow((this.x - this.goalNode.x), 2) + Math.Pow((this.y - this.goalNode.y), 2)) : 0.0f; }
         public float FValue { get { return this.GTotalValue + this.HValue; } }
-
 
         public List<Node> GetNeighbors()
         {
@@ -90,23 +97,29 @@ namespace PenguinMaze.Classes.PathFinding
                 Node otherNode = obj as Node;
                 if (!(otherNode is null))
                 {
-                    return this.GTotalValue.CompareTo(otherNode.GTotalValue);
+                    return this.FValue.CompareTo(otherNode.FValue);
                 }
                 else
                 {
-                    throw new ArgumentException("Object provided is not a Node");
+                    return 1;
                 }
             }
         }
 
         public int Compare(object left, object right)
         {
-            return (int)(Math.Round(((Node)left).GTotalValue - ((Node)right).GTotalValue));
+            //return (int)(Math.Round(((Node)left).GTotalValue - ((Node)right).GTotalValue));
+            //return ((Node)left).GTotalValue - ((Node)right).GTotalValue;
+            return (int)Math.Round(((Node)left).FValue - ((Node)right).FValue);
         }
 
         public static bool operator ==(Node a, Node b)
         {
-            if (a is null || b is null)
+            if (a is null && b is null)
+            {
+                return true;
+            }
+            else if (a is null || b is null)
             {
                 return false;
             }
@@ -115,7 +128,11 @@ namespace PenguinMaze.Classes.PathFinding
 
         public static bool operator !=(Node a, Node b)
         {
-            if (b is null)
+            if (a is null)
+            {
+                return false;
+            }
+            else if (b is null)
             {
                 return true;
             }
@@ -126,9 +143,33 @@ namespace PenguinMaze.Classes.PathFinding
         public virtual void Draw(Graphics g)
         {
             int size = Map.CellSize;
-            Brush myBrush = new SolidBrush(Color.Red);
-            Rectangle bound = new Rectangle(this.x * size, this.y * size, size, size); // Get the bound of the sprite to draw on the graphic
-            g.FillRectangle(myBrush, bound);
+            //Brush myBrush = new SolidBrush(Color.Red);
+            Rectangle spriteBound = new Rectangle(this.x * size, this.y * size, size, size); // Get the bound of the sprite to draw on the graphic
+            //g.FillRectangle(myBrush, bound);
+            g.DrawImage(Node.spriteIMG, spriteBound);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+            {
+                return false;
+            }
+            else
+            {
+                Node otherNode = obj as Node;
+                if (!(otherNode is null))
+                {
+                    return this.x == ((Node)obj).x && this.y == ((Node)obj).y;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+        }
+
+
     }
 }

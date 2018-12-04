@@ -65,7 +65,7 @@ namespace PenguinMaze.Classes.PathFinding
 
             Node pathNode = goalNode;
 
-            while (pathNode != null)
+            while ((pathNode != null))
             {
                 path.Insert(0, pathNode);
                 pathNode = pathNode.ParentNode;
@@ -77,6 +77,7 @@ namespace PenguinMaze.Classes.PathFinding
         private static Node TakeOutNode(List<Node> nodes)
         {
             nodes.Sort();
+            //nodes.Reverse();
             Node n = nodes[0];
             nodes.RemoveAt(0);
             return n;

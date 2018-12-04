@@ -111,6 +111,7 @@
     <Content Include="Resources\Crab.png" />
     <Content Include="Resources\Fish.png" />
     <Content Include="Resources\Floor.png" />
+    <Content Include="Resources\FloorCracked.png" />
     <Content Include="Resources\Igloo.jpg" />
     <Content Include="Resources\Lobster.png" />
     <Content Include="Resources\Level0.txt" />

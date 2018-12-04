@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Task_Lb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,12 +46,22 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // Task_Lb
+            // 
+            this.Task_Lb.AutoSize = true;
+            this.Task_Lb.Location = new System.Drawing.Point(27, 9);
+            this.Task_Lb.Name = "Task_Lb";
+            this.Task_Lb.Size = new System.Drawing.Size(35, 13);
+            this.Task_Lb.TabIndex = 1;
+            this.Task_Lb.Text = "label1";
+            // 
             // MazeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1053, 702);
+            this.Controls.Add(this.Task_Lb);
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.Name = "MazeForm";
@@ -59,12 +70,14 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label Task_Lb;
     }
 }
 

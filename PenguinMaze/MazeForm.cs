@@ -36,6 +36,10 @@ namespace PenguinMaze
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            if (!(GameManager.T is null))
+            {
+                Task_Lb.Text = GameManager.T.Status.ToString(); 
+            }
             GameManager.DrawGame(e.Graphics);
             int width  = (Map.MapData.GetUpperBound(0) + 1) * Map.CellSize;
             int height = (Map.MapData.GetUpperBound(1) + 1) * Map.CellSize;
