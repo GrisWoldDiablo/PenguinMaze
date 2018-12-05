@@ -34,16 +34,19 @@ namespace PenguinMaze
             Refresh();
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void MazeArea_PB_Paint(object sender, PaintEventArgs e)
         {
-            if (!(GameManager.T is null))
-            {
-                Task_Lb.Text = GameManager.T.Status.ToString(); 
-            }
+           
             GameManager.DrawGame(e.Graphics);
             int width  = (Map.MapData.GetUpperBound(0) + 1) * Map.CellSize;
             int height = (Map.MapData.GetUpperBound(1) + 1) * Map.CellSize;
-            pictureBox1.Size = new Size(width, height);
+            MazeArea_PB.Size = new Size(width, height);
         }
+
+        private void Hint_Btn_Click(object sender, EventArgs e)
+        {
+            GameManager.ShowPath();
+        }
+
     }
 }

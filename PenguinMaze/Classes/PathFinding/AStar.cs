@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PenguinMaze.Classes.PathFinding
 {
@@ -38,7 +39,7 @@ namespace PenguinMaze.Classes.PathFinding
                     }
 
 
-                    int indexInClosed = openNodes.IndexOf(neighbor);
+                    int indexInClosed = closedNodes.IndexOf(neighbor);
                     if (indexInClosed > 0)
                     {
                         if (closedNodes[indexInClosed].CompareTo(currentNode) <= 0)
@@ -60,9 +61,13 @@ namespace PenguinMaze.Classes.PathFinding
                 }
 
                 closedNodes.Add(currentNode);
-
+                
             }
-
+            if (goalNode.ParentNode is null)
+            {
+                MessageBox.Show("No path found");
+                return new List<Node>();
+            }
             Node pathNode = goalNode;
 
             while ((pathNode != null))

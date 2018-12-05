@@ -20,7 +20,7 @@ namespace PenguinMaze.Classes
         private static int currentLevel = 0;
         private static MazeForm mazeForm;
         private static CombatForm combatForm;
-        private static string[] levels = { "Level0.txt" };
+        private static string[] levels = { "Level1.txt" };
 
         private static List<Node> path = new List<Node>();
 
@@ -87,7 +87,6 @@ namespace PenguinMaze.Classes
 
         public static void UpdateEntities(Keys key)
         {
-            
             player.UpdateDirection(key);
             player.Move();
             if (player.IsFighting)
@@ -102,14 +101,26 @@ namespace PenguinMaze.Classes
                     entity.Move();
                 }
             }
+        }
 
-            if (/*key == Keys.Space*/true)
+        public static async void ShowPath()
+        {   
+            Node endingNode = new Node(ending.Location.X, ending.Location.Y, null, null);
+            Node playerNode = new Node(player.Location.X, player.Location.Y, endingNode, null);
+            //new Task(() => path = AStar.FindPath(playerNode, endingNode)).Start();
+            t = Task.Run(() => path = AStar.FindPath(playerNode, endingNode));
+            mazeForm.Task_Lb1.Text = t.Status != TaskStatus.RanToCompletion?"Thinking...":t.Status.ToString();
+            await t;
+            if (path.Count > 0)
             {
-                Node endingNode = new Node(ending.Location.X, ending.Location.Y, null, null);
-                Node playerNode = new Node(player.Location.X, player.Location.Y, endingNode, null);
-                //new Task(() => path = AStar.FindPath(playerNode, endingNode)).Start();
-                t = Task.Run(() => path = AStar.FindPath(playerNode, endingNode));
+                mazeForm.Task_Lb1.Text = "Found path."; 
             }
+            else
+            {
+                mazeForm.Task_Lb1.Text = "No path found.";
+            }
+            mazeForm.Refresh();
+            path = new List<Node>();
         }
 
         public static void CombatUpdate()
@@ -132,6 +143,5 @@ namespace PenguinMaze.Classes
                 combatForm.Hide();
             }
         }
-        
     }
 }

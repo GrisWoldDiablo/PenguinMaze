@@ -24,7 +24,7 @@ namespace PenguinMaze.Classes.PathFinding
         
         private static List<AbstractEntity> entities = null;
         private static int[,] mapData = null;
-        private static int cellSize = 30;
+        private static int cellSize = 25;
         
         public static List<AbstractEntity> Entities { get => entities; set => entities = value; }
         public static int[,] MapData { get => mapData; set => mapData = value; }
