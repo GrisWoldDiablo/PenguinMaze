@@ -21,7 +21,7 @@ namespace PenguinMaze.Classes.PathFinding
             Food   = 'F',
             Igloo  = 'I'
         }
-        
+
         private static List<AbstractEntity> entities = null;
         private static int[,] mapData = null;
         private static int cellSize = 25;
@@ -50,40 +50,31 @@ namespace PenguinMaze.Classes.PathFinding
                     switch ((MapSymbol)character)
                     {
                         case MapSymbol.Wall:
-                            //entities[x, y] = new Wall(new Point(x, y));
                             entities.Add(EntityFactory.GetWall(x,y));
                             mapData[x, y] = -1;
                             break;
                         case MapSymbol.Floor:
-                            //entities[x, y] = new Floor(new Point(x, y));
                             entities.Add(EntityFactory.GetFloor(x, y));
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Player:
-                            //entities[x, y] = new Floor(new Point(x, y));
                             entities.Add(EntityFactory.GetFloor(x, y));
                             player = EntityFactory.GetPlayer(x, y);
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Enemy:
-                            //entities[x, y] = new Floor(new Point(x, y));
-                            //entities[x, y] = new Enemy(new Point(x, y));
                             entities.Add(EntityFactory.GetFloor(x, y));
                             entities.Add(EntityFactory.GetEnemy(x, y));
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Food:
-                            //entities[x, y] = new Floor(new Point(x, y));
-                            //entities[x, y] = new Food(new Point(x, y));
                             entities.Add(EntityFactory.GetFloor(x, y));
                             entities.Add(EntityFactory.GetFood(x, y));
                             mapData[x, y] = 1;
                             break;
                         case MapSymbol.Igloo:
-                            //entities[x, y] = new Floor(new Point(x, y));
                             entities.Add(EntityFactory.GetFloor(x, y));
                             ending = EntityFactory.GetIgloo(x, y);
-                            entities.Add(ending);
                             mapData[x, y] = 1;
                             break;
                         default:
@@ -94,6 +85,7 @@ namespace PenguinMaze.Classes.PathFinding
                 y++;
             }
             entities.Add(player);
+            entities.Add(ending);
             return !(player is null);
         }
 
