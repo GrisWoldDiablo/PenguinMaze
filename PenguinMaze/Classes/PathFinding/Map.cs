@@ -39,7 +39,6 @@ namespace PenguinMaze.Classes.PathFinding
             int witdh = fileLines[0].Length;
             mapData = new int[witdh, height];
             entities = new List<AbstractEntity>();
-
             int y = 0;
             foreach (string line in fileLines)
             {
@@ -103,7 +102,15 @@ namespace PenguinMaze.Classes.PathFinding
             }
             else
             {
-                return mapData[x, y];
+                try
+                {
+                    return mapData[x, y];
+                }
+                catch
+                {
+
+                    return -1;
+                }
             }
         }
     }

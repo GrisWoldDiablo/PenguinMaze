@@ -15,23 +15,13 @@ namespace PenguinMaze
 {
     public partial class MazeForm : Form
     {
-        public AbstractEntity theOne;
         public List<AbstractEntity> entities = new List<AbstractEntity>();
         public CombatForm combatForm = new CombatForm();
 
         public MazeForm()
         {
             InitializeComponent();
-            theOne = new Player(new Point(0, 0));
-
             GameManager.StartGame(this,combatForm);
-            //combatForm.Show();
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            GameManager.UpdateEntities(e.KeyCode);
-            Refresh();
         }
 
         private void MazeArea_PB_Paint(object sender, PaintEventArgs e)
@@ -48,5 +38,21 @@ namespace PenguinMaze
             GameManager.ShowPath();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            GameManager.UpdateEntities(keyData);
+            GameManager.UpdateStatus();
+            Refresh();
+            return true;
+        }
+
+        private void Player_PB_Paint(object sender, PaintEventArgs e)
+        {
+            GameManager.Player.Draw(e.Graphics, null, Player_PB.Width);
+            PlayerLife_Lb.Text = "Life : " + GameManager.Player.Lifes;
+            PlayerHP_Lb.Text = "HP : " + GameManager.Player.HealthPoint;
+            PlayerWD_Lb.Text = "Wall Destroyer : " + GameManager.Player.WallDestroyer;
+            PlayerScore_Lb.Text = "Score : " + GameManager.Player.Score;
+        }
     }
 }

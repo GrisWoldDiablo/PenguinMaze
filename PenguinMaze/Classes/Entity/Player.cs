@@ -26,9 +26,11 @@ namespace PenguinMaze.Classes.Entity
         private static Image fightingSprite;
         private Image spriteIMG;
         private int lifes;
+        private int wallDestroyer;
         
         
         public int Lifes { get => lifes; set => lifes = value; }
+        public int WallDestroyer { get => wallDestroyer; set => wallDestroyer = value; }
 
         static Player()
         {
@@ -39,14 +41,15 @@ namespace PenguinMaze.Classes.Entity
             fightingSprite = Image.FromFile($"../../Resources/{fightingImageFile}");
         }
 
-        public Player(Point location) : base(200, location)
+        public Player(Point location) : base(0, location)
         {
             this.currentDirection = Direction.NONE;
             this.lifes = 3;
             this.target = null;
-            this.healthPoint = 1000;
+            this.healthPoint = 100;
             this.damagePoint = 30;
             this.isAlive = true;
+            this.wallDestroyer = 3;
         }
 
 
@@ -91,7 +94,30 @@ namespace PenguinMaze.Classes.Entity
 
         public override void Move()
         {
+            Point currentLocation = new Point(this.location.X,this.location.Y);
             base.Move();
+            if (currentLocation == this.location && this.wallDestroyer > 0)
+            {
+                Point velocity = GetVelocity();
+                int tX = this.location.X + velocity.X;
+                int tY = this.location.Y + velocity.Y;
+
+                try
+                {
+                    if ((Map.MapData[tX, tY] < 0))
+                    {
+                        Point tempPoint = new Point(tX, tY);
+                        int index = Map.Entities.IndexOf(Map.Entities.Find(x => x.Location == tempPoint && x is Wall));
+                        Map.Entities[index] = EntityFactory.GetFloor(tX, tY);
+                        Map.MapData[tX, tY] = 1;
+                        this.wallDestroyer--;
+                    }
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
             AbstractEntity other = Map.Entities.Find(x => x.Location == this.location && !(x is Floor || x is Igloo || x is Player) );
                         
             if (!(other is null))
@@ -103,9 +129,18 @@ namespace PenguinMaze.Classes.Entity
                 }
                 else
                 {
-                    base.Eat(other);
+                    this.Eat(other);
                 }
             } 
+        }
+
+        public override void Eat(AbstractEntity entity)
+        {
+            if (entity is Food)
+            {
+                this.healthPoint += entity.Score;
+            }
+            base.Eat(entity);
         }
     }
 }

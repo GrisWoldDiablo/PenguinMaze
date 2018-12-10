@@ -16,11 +16,13 @@ namespace PenguinMaze.Classes
     {
         private static bool isGameOver = false;
         private static Player player;
+        private static Point playerOGLocation;
+        private static int playerOGHP;
         private static Igloo ending;
         private static int currentLevel = 0;
         private static MazeForm mazeForm;
         private static CombatForm combatForm;
-        private static string[] levels = { "Level1.txt" };
+        private static string[] levels = { "level0.txt", "Level1.txt" };
 
         private static List<Node> path = new List<Node>();
 
@@ -33,16 +35,14 @@ namespace PenguinMaze.Classes
         {
             mazeForm = theMazeForm;
             combatForm = theCombatForm;
-
             ResetGame();
-
         }
 
         private static void ResetGame()
         {
             InitLevel();
             currentLevel = 0;
-            player.Lifes = 3;
+            player.Lifes = 1;
         }
 
         private static void InitLevel()
@@ -53,6 +53,10 @@ namespace PenguinMaze.Classes
         private static void NextLevel()
         {
             currentLevel++;
+            if (currentLevel >= levels.Length)
+            {
+                currentLevel = 0;
+            }
             InitLevel();
         }
 
@@ -62,6 +66,8 @@ namespace PenguinMaze.Classes
             {
                 MessageBox.Show($"File name {mapFileName} missing");
             }
+            playerOGLocation = Map.Entities.Find(x => x is Player).Location;
+            playerOGHP = Map.Entities.Find(x => x is Player).HealthPoint;
         }
 
         public static void DrawGame(Graphics g)
@@ -82,6 +88,10 @@ namespace PenguinMaze.Classes
             if (player.Lifes <= 0)
             {
                 ResetGame();
+            }
+            if (player.Location == ending.Location)
+            {
+                NextLevel();
             }
         }
 
@@ -125,17 +135,30 @@ namespace PenguinMaze.Classes
 
         public static void CombatUpdate()
         {
+            if (player.IsFighting)
+            {
+                player.Fight(player.Target); 
+            }
             foreach (var item in Map.Entities)
             {
-                if (item.IsFighting)
+                if (item.IsFighting && !(item is Player))
                 {
-                    item.Fight(item.Target);
+                    if (item.Fight(item.Target))
+                    {
+                        break;
+                    }
+                    
                 }
             }
-            if (!player.Target.IsAlive)
+            if (!player.IsAlive)
             {
-                Map.Entities.Remove(player.Target);
-                player.Target = null;
+                //Map.Entities.Remove(player.Target);
+                //player.Target = null;
+                player.Location = playerOGLocation;
+                player.HealthPoint = playerOGHP;
+                Map.Entities.Add(player);
+                player.Lifes--;
+                UpdateStatus();
             }
             if (!player.IsFighting)
             {

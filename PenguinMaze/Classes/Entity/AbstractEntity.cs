@@ -64,7 +64,7 @@ namespace PenguinMaze.Classes.Entity
             if (!entity.isAlive)
             {
                 this.scoreValue += entity.scoreValue;
-                entity.isAlive = true;
+                //entity.isAlive = false;
                 Map.Entities.Remove(entity);
             }
         }
@@ -92,23 +92,33 @@ namespace PenguinMaze.Classes.Entity
             int tX = this.location.X + velocity.X;
             int tY = this.location.Y + velocity.Y;
 
-            if (!(Map.MapData[tX,tY] < 0))
+            try
             {
-                this.location.X += velocity.X;
-                this.location.Y += velocity.Y;
-            }   
+                if (!(Map.MapData[tX, tY] < 0))
+                {
+                    this.location.X += velocity.X;
+                    this.location.Y += velocity.Y;
+                }
+            }
+            catch
+            {
+
+            }
         }
 
-        public virtual void Fight(AbstractEntity target)
+        public virtual bool Fight(AbstractEntity target)
         {
             target.healthPoint -= this.damagePoint;
 
             if (target.healthPoint <= 0)
             {
-                target.isAlive = false;
                 target.isFighting = false;
                 this.isFighting = false;
+                target.isAlive = false;
+                this.Eat(target);
+                return true;
             }
+            return false;
         }
 
     }

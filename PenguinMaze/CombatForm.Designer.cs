@@ -41,6 +41,7 @@
             // 
             // attacker_PB
             // 
+            this.attacker_PB.BackColor = System.Drawing.Color.Transparent;
             this.attacker_PB.Location = new System.Drawing.Point(12, 12);
             this.attacker_PB.Name = "attacker_PB";
             this.attacker_PB.Size = new System.Drawing.Size(300, 300);
@@ -50,6 +51,7 @@
             // 
             // target_PB
             // 
+            this.target_PB.BackColor = System.Drawing.Color.Transparent;
             this.target_PB.Location = new System.Drawing.Point(488, 12);
             this.target_PB.Name = "target_PB";
             this.target_PB.Size = new System.Drawing.Size(300, 300);
@@ -109,6 +111,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::PenguinMaze.Properties.Resources.Background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

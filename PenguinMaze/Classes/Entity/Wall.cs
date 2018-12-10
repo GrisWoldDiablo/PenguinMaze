@@ -16,7 +16,6 @@ namespace PenguinMaze.Classes.Entity
         public Wall(Point location) : base(0, location)
         {
         }
-        
 
         static Wall()
         {
