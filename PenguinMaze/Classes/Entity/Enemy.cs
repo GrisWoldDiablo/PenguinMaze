@@ -25,6 +25,7 @@ namespace PenguinMaze.Classes.Entity
 
         public Enemy(Point location) : base(200, location)
         {
+            
             this.spriteIMG = Enemy.spriteImages[Rand.Next(spriteImages.Count)];
             this.heading = Direction.NONE;
             this.target = null;
@@ -55,6 +56,11 @@ namespace PenguinMaze.Classes.Entity
                     base.Eat(other);
                 }
             }
+        }
+
+        public void UpdatePath()
+        {
+            throw new NotImplementedException();
         }
     }
 }

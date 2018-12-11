@@ -120,6 +120,6 @@ namespace PenguinMaze.Classes.Entity
             }
             return false;
         }
-
+        
     }
 }

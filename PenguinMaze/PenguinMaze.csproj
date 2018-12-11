@@ -56,6 +56,9 @@
     <Compile Include="Classes\Entity\Igloo.cs" />
     <Compile Include="Classes\Entity\Wall.cs" />
     <Compile Include="Classes\GameManager.cs" />
+    <Compile Include="Classes\IStates\BoostedState.cs" />
+    <Compile Include="Classes\IStates\NormalState.cs" />
+    <Compile Include="Classes\IStates\IState.cs" />
     <Compile Include="Classes\PathFinding\AStar.cs" />
     <Compile Include="Classes\PathFinding\Map.cs" />
     <Compile Include="Classes\PathFinding\Node.cs" />
@@ -126,8 +129,6 @@
     <Content Include="Resources\Shark.png" />
     <Content Include="Resources\Wall.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\IStates\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

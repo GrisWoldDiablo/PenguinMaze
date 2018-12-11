@@ -1,4 +1,5 @@
-﻿using PenguinMaze.Classes.PathFinding;
+﻿using PenguinMaze.Classes.IStates;
+using PenguinMaze.Classes.PathFinding;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +10,8 @@ using System.Windows.Forms;
 
 namespace PenguinMaze.Classes.Entity
 {
+    public delegate void PlayerUpdate();
+
     public class Player : AbstractEntity
     {
         
@@ -27,10 +30,13 @@ namespace PenguinMaze.Classes.Entity
         private Image spriteIMG;
         private int lifes;
         private int wallDestroyer;
+        private IState currentState;
+        private event PlayerUpdate PlayerMoved;
         
         
         public int Lifes { get => lifes; set => lifes = value; }
         public int WallDestroyer { get => wallDestroyer; set => wallDestroyer = value; }
+        public IState CurrentState { get => currentState; set => currentState = value; }
 
         static Player()
         {
@@ -50,6 +56,7 @@ namespace PenguinMaze.Classes.Entity
             this.damagePoint = 30;
             this.isAlive = true;
             this.wallDestroyer = 3;
+            this.currentState = NormalState.GetInstance();
         }
 
 
@@ -141,6 +148,11 @@ namespace PenguinMaze.Classes.Entity
                 this.healthPoint += entity.Score;
             }
             base.Eat(entity);
+        }
+
+        public void SubscribeEvents(Enemy enemy)
+        {
+            this.PlayerMoved += enemy.UpdatePath;
         }
     }
 }

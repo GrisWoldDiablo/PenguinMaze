@@ -37,8 +37,7 @@ namespace PenguinMaze.Classes.PathFinding
                             continue;
                         }
                     }
-
-
+                    
                     int indexInClosed = closedNodes.IndexOf(neighbor);
                     if (indexInClosed > 0)
                     {
