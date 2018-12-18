@@ -12,6 +12,8 @@ using System.Collections;
 
 namespace PenguinMaze.Classes
 {
+       
+
     public class GameManager
     {
         private static bool isGameOver = false;
@@ -30,11 +32,14 @@ namespace PenguinMaze.Classes
         public static int CurrentLevel { get => currentLevel; set => currentLevel = value; }
         private static Task t = null;
         public static Task T { get => t; set => t = value; }
+        public static MazeForm MazeForm { get => mazeForm; set => mazeForm = value; }
 
         public static void StartGame(MazeForm theMazeForm, CombatForm theCombatForm)
         {
             mazeForm = theMazeForm;
             combatForm = theCombatForm;
+            combatForm.Show();
+            combatForm.Hide();
             ResetGame();
         }
 
@@ -137,7 +142,8 @@ namespace PenguinMaze.Classes
         {
             if (player.IsFighting)
             {
-                player.Fight(player.Target); 
+                player.FightUpdate();
+                //player.Fight(player.Target); 
             }
             foreach (var item in Map.Entities)
             {

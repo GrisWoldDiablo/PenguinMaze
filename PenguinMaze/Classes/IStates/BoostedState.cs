@@ -26,6 +26,7 @@ namespace PenguinMaze.Classes.IStates
         public void GetFood(Player player, AbstractEntity food)
         {
             player.Score += food.Score * 2;
+            player.Eat(food);
         }
 
         public void GetBooster(Player player, AbstractEntity booster)
@@ -34,7 +35,7 @@ namespace PenguinMaze.Classes.IStates
             booster.IsAlive = false;
         }
 
-        public void MeetEnemy(Player player)
+        public void MeetEnemy(Player player, AbstractEntity enemy)
         {
             player.IsFighting = false;
             player.CurrentState = NormalState.GetInstance();

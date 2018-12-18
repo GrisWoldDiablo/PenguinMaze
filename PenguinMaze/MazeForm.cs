@@ -49,10 +49,22 @@ namespace PenguinMaze
         private void Player_PB_Paint(object sender, PaintEventArgs e)
         {
             GameManager.Player.Draw(e.Graphics, null, Player_PB.Width);
-            PlayerLife_Lb.Text = "Life : " + GameManager.Player.Lifes;
-            PlayerHP_Lb.Text = "HP : " + GameManager.Player.HealthPoint;
-            PlayerWD_Lb.Text = "Wall Destroyer : " + GameManager.Player.WallDestroyer;
-            PlayerScore_Lb.Text = "Score : " + GameManager.Player.Score;
+            //PlayerLife_Lb.Text = "Life : " + GameManager.Player.Lifes;
+            //PlayerHP_Lb.Text = "HP : " + GameManager.Player.HealthPoint;
+            //PlayerWD_Lb.Text = "Wall Destroyer : " + GameManager.Player.WallDestroyer;
+            //PlayerScore_Lb.Text = "Score : " + GameManager.Player.Score;
+        }
+
+        public void UpdatePlayerInfo(object sender)
+        {
+            if (sender is Player)
+            {
+                Player player = (Player)sender;
+                PlayerLife_Lb.Text = "Life : " + player.Lifes;
+                PlayerHP_Lb.Text = "HP : " + player.HealthPoint;
+                PlayerWD_Lb.Text = "Wall Destroyer : " + player.WallDestroyer;
+                PlayerScore_Lb.Text = "Score : " + player.Score;
+            }
         }
     }
 }

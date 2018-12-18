@@ -11,10 +11,11 @@ using System.Windows.Forms;
 namespace PenguinMaze.Classes.Entity
 {
     public delegate void PlayerUpdate();
+    public delegate void UpdateInfo(object sender);
 
     public class Player : AbstractEntity
     {
-        
+        private event UpdateInfo playerUpdateEvent;
         private static string[] imageFiles = { "PenguinNone.png", "PenguinUp.png", "PenguinDown.png", "PenguinLeft.png", "PenguinRight.png", };
         /// <summary>
         /// Image for needed based on players <see cref="Direction"/> Indexes:
@@ -49,6 +50,7 @@ namespace PenguinMaze.Classes.Entity
 
         public Player(Point location) : base(0, location)
         {
+            this.playerUpdateEvent = GameManager.MazeForm.UpdatePlayerInfo;
             this.currentDirection = Direction.NONE;
             this.lifes = 3;
             this.target = null;
@@ -57,6 +59,7 @@ namespace PenguinMaze.Classes.Entity
             this.isAlive = true;
             this.wallDestroyer = 3;
             this.currentState = NormalState.GetInstance();
+            this.playerUpdateEvent(this);
         }
 
 
@@ -118,6 +121,7 @@ namespace PenguinMaze.Classes.Entity
                         Map.Entities[index] = EntityFactory.GetFloor(tX, tY);
                         Map.MapData[tX, tY] = 1;
                         this.wallDestroyer--;
+                        this.playerUpdateEvent(this);
                     }
                 }
                 catch (Exception)
@@ -126,19 +130,20 @@ namespace PenguinMaze.Classes.Entity
                 }
             }
             AbstractEntity other = Map.Entities.Find(x => x.Location == this.location && !(x is Floor || x is Igloo || x is Player) );
-                        
+
             if (!(other is null))
             {
                 if (other is Enemy)
                 {
-                    this.target = other;
-                    this.isFighting = true;
+                    this.currentState.MeetEnemy(this, other);
                 }
-                else
+                else if (other is Food)
                 {
-                    this.Eat(other);
+                    this.currentState.GetFood(this, other);
                 }
-            } 
+                this.playerUpdateEvent(this);
+            }
+
         }
 
         public override void Eat(AbstractEntity entity)
@@ -153,6 +158,16 @@ namespace PenguinMaze.Classes.Entity
         public void SubscribeEvents(Enemy enemy)
         {
             this.PlayerMoved += enemy.UpdatePath;
+        }
+
+        public bool FightUpdate()
+        {
+            if (this.IsFighting)
+            {
+                this.IsFighting = !base.Fight(this.Target);
+            }
+            this.playerUpdateEvent(this);
+            return this.IsFighting;
         }
     }
 }

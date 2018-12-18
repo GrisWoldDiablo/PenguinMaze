@@ -63,8 +63,8 @@ namespace PenguinMaze.Classes.Entity
         {
             if (!entity.isAlive)
             {
-                this.scoreValue += entity.scoreValue;
-                //entity.isAlive = false;
+                //this.scoreValue += entity.scoreValue;
+                ////entity.isAlive = false;
                 Map.Entities.Remove(entity);
             }
         }

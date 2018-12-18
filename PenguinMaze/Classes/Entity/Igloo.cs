@@ -18,7 +18,6 @@ namespace PenguinMaze.Classes.Entity
 
         }
         
-
         static Igloo()
         {
             spriteIMG = Image.FromFile($"../../Resources/{imageFile}");
@@ -34,4 +33,5 @@ namespace PenguinMaze.Classes.Entity
             // Don't Move
         }
     }
+
 }

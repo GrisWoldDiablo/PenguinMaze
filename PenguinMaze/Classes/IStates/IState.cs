@@ -13,6 +13,6 @@ namespace PenguinMaze.Classes.IStates
         List<Node> FindPath(Enemy enemy);
         void GetFood(Player player, AbstractEntity food);
         void GetBooster(Player player, AbstractEntity booster);
-        void MeetEnemy(Player player);
+        void MeetEnemy(Player player, AbstractEntity enemy);
     }
 }
