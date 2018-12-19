@@ -15,7 +15,7 @@ namespace PenguinMaze.Classes.Entity
 
     public class Player : AbstractEntity
     {
-        private event UpdateInfo playerUpdateEvent;
+        private event UpdateInfo PlayerUpdateEvent;
         private static string[] imageFiles = { "PenguinNone.png", "PenguinUp.png", "PenguinDown.png", "PenguinLeft.png", "PenguinRight.png", };
         /// <summary>
         /// Image for needed based on players <see cref="Direction"/> Indexes:
@@ -50,7 +50,7 @@ namespace PenguinMaze.Classes.Entity
 
         public Player(Point location) : base(0, location)
         {
-            this.playerUpdateEvent = GameManager.MazeForm.UpdatePlayerInfo;
+            this.PlayerUpdateEvent = GameManager.MazeForm.UpdatePlayerInfo;
             this.currentDirection = Direction.NONE;
             this.lifes = 3;
             this.target = null;
@@ -59,7 +59,7 @@ namespace PenguinMaze.Classes.Entity
             this.isAlive = true;
             this.wallDestroyer = 3;
             this.currentState = NormalState.GetInstance();
-            this.playerUpdateEvent(this);
+            this.PlayerUpdateEvent(this);
         }
 
 
@@ -121,7 +121,7 @@ namespace PenguinMaze.Classes.Entity
                         Map.Entities[index] = EntityFactory.GetFloor(tX, tY);
                         Map.MapData[tX, tY] = 1;
                         this.wallDestroyer--;
-                        this.playerUpdateEvent(this);
+                        this.PlayerUpdateEvent(this);
                     }
                 }
                 catch (Exception)
@@ -141,7 +141,7 @@ namespace PenguinMaze.Classes.Entity
                 {
                     this.currentState.GetFood(this, other);
                 }
-                this.playerUpdateEvent(this);
+                this.PlayerUpdateEvent(this);
             }
 
         }
@@ -166,7 +166,7 @@ namespace PenguinMaze.Classes.Entity
             {
                 this.IsFighting = !base.Fight(this.Target);
             }
-            this.playerUpdateEvent(this);
+            this.PlayerUpdateEvent(this);
             return this.IsFighting;
         }
     }

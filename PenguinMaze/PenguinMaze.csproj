@@ -116,9 +116,11 @@
     <Content Include="Resources\Floor.png" />
     <Content Include="Resources\FloorCracked.png" />
     <Content Include="Resources\Igloo.jpg" />
-    <Content Include="Resources\Level1.txt" />
-    <Content Include="Resources\Lobster.png" />
     <Content Include="Resources\Level0.txt" />
+    <Content Include="Resources\Level1.txt" />
+    <Content Include="Resources\Level3.txt" />
+    <Content Include="Resources\Lobster.png" />
+    <Content Include="Resources\Level2.txt" />
     <Content Include="Resources\Orca.png" />
     <Content Include="Resources\PenguinDown.png" />
     <Content Include="Resources\PenguinFight.png" />

@@ -30,7 +30,7 @@
         {
             this.attacker_PB = new System.Windows.Forms.PictureBox();
             this.target_PB = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Fight_Btn = new System.Windows.Forms.Button();
             this.attackerHP_TB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.targetHP_TB = new System.Windows.Forms.TextBox();
@@ -59,15 +59,15 @@
             this.target_PB.TabStop = false;
             this.target_PB.Paint += new System.Windows.Forms.PaintEventHandler(this.Target_PB_Paint);
             // 
-            // button1
+            // Fight_Btn
             // 
-            this.button1.Location = new System.Drawing.Point(333, 370);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 40);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Close";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Fight_Btn.Location = new System.Drawing.Point(333, 370);
+            this.Fight_Btn.Name = "Fight_Btn";
+            this.Fight_Btn.Size = new System.Drawing.Size(118, 40);
+            this.Fight_Btn.TabIndex = 2;
+            this.Fight_Btn.Text = "FIGHT!";
+            this.Fight_Btn.UseVisualStyleBackColor = true;
+            this.Fight_Btn.Click += new System.EventHandler(this.Fight_Btn_Click);
             // 
             // attackerHP_TB
             // 
@@ -118,7 +118,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.targetHP_TB);
             this.Controls.Add(this.attackerHP_TB);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Fight_Btn);
             this.Controls.Add(this.target_PB);
             this.Controls.Add(this.attacker_PB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -136,7 +136,7 @@
 
         private System.Windows.Forms.PictureBox attacker_PB;
         private System.Windows.Forms.PictureBox target_PB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Fight_Btn;
         private System.Windows.Forms.TextBox attackerHP_TB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox targetHP_TB;

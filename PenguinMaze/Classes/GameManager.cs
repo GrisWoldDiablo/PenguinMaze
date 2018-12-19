@@ -24,8 +24,9 @@ namespace PenguinMaze.Classes
         private static int currentLevel = 0;
         private static MazeForm mazeForm;
         private static CombatForm combatForm;
-        private static string[] levels = { "level0.txt", "Level1.txt" };
-
+        private static string[] levels = { "level0.txt", "Level1.txt", "Level2.txt", "Level3.txt" };
+        private static int playerScore;
+        private static int playerHP;
         private static List<Node> path = new List<Node>();
 
         public static Player Player { get => player; set => player = value; }
@@ -57,12 +58,17 @@ namespace PenguinMaze.Classes
 
         private static void NextLevel()
         {
+            playerScore = player.Score;
+            playerHP = player.HealthPoint;
             currentLevel++;
             if (currentLevel >= levels.Length)
             {
                 currentLevel = 0;
             }
             InitLevel();
+            player.Score = playerScore;
+            player.HealthPoint = playerHP;
+            mazeForm.UpdatePlayerInfo(player);
         }
 
         private static void LoadLevel(string mapFileName)

@@ -40,7 +40,7 @@ namespace PenguinMaze
             target.Draw(e.Graphics, null, target_PB.Width);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Fight_Btn_Click(object sender, EventArgs e)
         {
             GameManager.CombatUpdate();
             UpdateFightInfo();
